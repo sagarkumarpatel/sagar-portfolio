@@ -46,7 +46,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  // Prevent hydration mismatch by not rendering until mounted
+  // Prevent hydration mismatch
   // if (!mounted) {
   //   return <>{children}</>;
   // }

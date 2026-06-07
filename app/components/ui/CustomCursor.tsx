@@ -35,13 +35,13 @@ export default function CustomCursor() {
 
   return (
     <>
+      {/* Outer cursor ring - No backgroundColor animation! */}
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 rounded-full border-2 border-blue-500 pointer-events-none z-[9999] hidden lg:block"
         animate={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
         }}
         transition={{
           type: 'spring',
@@ -50,6 +50,7 @@ export default function CustomCursor() {
           mass: 0.5,
         }}
       />
+      {/* Inner cursor dot */}
       <motion.div
         className="fixed top-0 left-0 w-2 h-2 rounded-full bg-blue-500 pointer-events-none z-[9999] hidden lg:block"
         animate={{
