@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import emailjs from '@emailjs/browser';
 import { 
   FiMail, 
   FiGithub, 
@@ -12,33 +13,28 @@ import {
   FiCheckCircle,
   FiAlertCircle,
   FiTwitter,
-  FiInstagram
+  FiInstagram,
+  FiUser,
+  FiMessageSquare
 } from 'react-icons/fi';
 import { personalInfo } from '@/app/lib/data';
+import { EMAILJS_CONFIG } from '@/app/lib/emailjs';  // Import from your emailjs config
 
 export default function Contact() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  const formRef = useRef<HTMLFormElement>(null);
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    user_name: '',
+    user_email: '',
+    subject: '',
     message: '',
   });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus('loading');
-    
-    // Simulate form submission - Replace with actual API endpoint
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setFormStatus('idle'), 3000);
-    }, 1500);
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -47,10 +43,59 @@ export default function Contact() {
     });
   };
 
+  const sendEmail = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('loading');
+    setErrorMessage('');
+
+    // Validate form
+    if (!formData.user_name || !formData.user_email || !formData.message) {
+      setFormStatus('error');
+      setErrorMessage('Please fill in all required fields');
+      setTimeout(() => setFormStatus('idle'), 3000);
+      return;
+    }
+
+    // Check if EmailJS is configured
+    if (!EMAILJS_CONFIG.SERVICE_ID || EMAILJS_CONFIG.SERVICE_ID === 'YOUR_SERVICE_ID') {
+      setFormStatus('error');
+      setErrorMessage('Email service not configured. Please email me directly at ' + personalInfo.email);
+      setTimeout(() => setFormStatus('idle'), 3000);
+      return;
+    }
+
+    try {
+      const result = await emailjs.sendForm(
+        EMAILJS_CONFIG.SERVICE_ID,
+        EMAILJS_CONFIG.TEMPLATE_ID,
+        formRef.current!,
+        EMAILJS_CONFIG.PUBLIC_KEY
+      );
+
+      if (result.text === 'OK') {
+        setFormStatus('success');
+        setFormData({
+          user_name: '',
+          user_email: '',
+          subject: '',
+          message: '',
+        });
+        setTimeout(() => setFormStatus('idle'), 5000);
+      } else {
+        throw new Error('Failed to send');
+      }
+    } catch (error) {
+      console.error('Email send error:', error);
+      setFormStatus('error');
+      setErrorMessage('Failed to send message. Please email me directly at ' + personalInfo.email);
+      setTimeout(() => setFormStatus('idle'), 5000);
+    }
+  };
+
   const contactMethods = [
     { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: 'bg-red-500' },
-    { icon: FiGithub, label: 'GitHub', value: 'github.com/sagarpatel', href: personalInfo.github, color: 'bg-gray-700' },
-    { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/sagarpatel', href: personalInfo.linkedin, color: 'bg-blue-600' },
+    { icon: FiGithub, label: 'GitHub', value: 'github.com/sagarkumarpatel', href: personalInfo.github, color: 'bg-gray-700' },
+    { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/sagar-patel', href: personalInfo.linkedin, color: 'bg-blue-600' },
   ];
 
   const socialLinks = [
@@ -124,6 +169,13 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Response Time Note */}
+            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
+              <p className="text-sm text-blue-600 dark:text-blue-400 text-center">
+                ⚡ I typically respond within 24-48 hours
+              </p>
+            </div>
+
             {/* Social Links */}
             <div className="mt-8">
               <h4 className="text-sm font-semibold mb-3 text-gray-600 dark:text-gray-400">Connect on Social Media</h4>
@@ -153,53 +205,76 @@ export default function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl">
+            <form ref={formRef} onSubmit={sendEmail} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl">
               <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
               
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                    Your Name
+                    Your Name *
+                  </label>
+                  <div className="relative">
+                    <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input
+                      type="text"
+                      name="user_name"
+                      value={formData.user_name}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                    Email Address *
+                  </label>
+                  <div className="relative">
+                    <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <input
+                      type="email"
+                      name="user_email"
+                      value={formData.user_email}
+                      onChange={handleChange}
+                      required
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                    Subject
                   </label>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
-                    required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                    placeholder="John Doe"
+                    placeholder="Project Inquiry / Job Opportunity"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                    Email Address
+                    Message *
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
-                    placeholder="Tell me about your project..."
-                  />
+                  <div className="relative">
+                    <FiMessageSquare className="absolute left-3 top-3 text-gray-400" />
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
+                      placeholder="Tell me about your project or opportunity..."
+                    />
+                  </div>
                 </div>
 
                 <button
@@ -240,17 +315,17 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-green-600 dark:text-green-400 text-sm text-center mt-3"
                   >
-                    Thanks for reaching out! I'll get back to you soon.
+                    ✓ Thanks for reaching out! I'll get back to you soon.
                   </motion.p>
                 )}
 
-                {formStatus === 'error' && (
+                {formStatus === 'error' && errorMessage && (
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="text-red-600 dark:text-red-400 text-sm text-center mt-3"
                   >
-                    Something went wrong. Please try again or email me directly.
+                    ⚠ {errorMessage}
                   </motion.p>
                 )}
               </div>
