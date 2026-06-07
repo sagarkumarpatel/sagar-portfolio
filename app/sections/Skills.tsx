@@ -3,29 +3,46 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { FaAws } from 'react-icons/fa';
+import { FaJava } from 'react-icons/fa6';
 import { 
   SiCplusplus, SiJavascript, SiPython, SiTypescript,
-  SiReact, SiNextdotjs, SiTailwindcss, SiNodedotjs,
+  SiReact, SiNextdotjs, SiTailwindcss, SiBootstrap, SiNodedotjs,
   SiExpress, SiMongodb, SiPostgresql, SiMysql,
-  SiGit, SiDocker, SiPostman
+  SiGit, SiDocker, SiPostman, SiGithubactions, SiSocketdotio, SiWebrtc
 } from 'react-icons/si';
 import { skills } from '@/app/lib/data';
 
 const skillIcons: Record<string, any> = {
+  // Programming Languages
   'C/C++': SiCplusplus,
+  'Java': FaJava,  // ADDED
   'JavaScript': SiJavascript,
   'Python': SiPython,
   'TypeScript': SiTypescript,
+  
+  // Frontend
   'React.js': SiReact,
   'Next.js': SiNextdotjs,
   'Tailwind CSS': SiTailwindcss,
+  'Bootstrap': SiBootstrap,  // ADDED
+  'EJS': SiReact,  // ADDED (fallback)
+  
+  // Backend
   'Node.js': SiNodedotjs,
   'Express.js': SiExpress,
+  'REST APIs': SiReact,  // ADDED (fallback icon)
+  'Socket.io': SiSocketdotio,  // ADDED
+  'WebRTC': SiWebrtc,  // ADDED
+  
+  // Databases
   'MongoDB': SiMongodb,
   'PostgreSQL': SiPostgresql,
   'MySQL': SiMysql,
+  
+  // Tools
   'Git/GitHub': SiGit,
   'Docker': SiDocker,
+  'GitHub Actions': SiGithubactions,  // ADDED
   'AWS': FaAws,
   'Postman': SiPostman,
 };
