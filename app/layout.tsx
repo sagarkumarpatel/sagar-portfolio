@@ -4,6 +4,7 @@ import './globals.css';
 import { Providers } from './providers'; // Import the new wrapper
 import Header from '@/app/layouts/Header';
 import Footer from '@/app/layouts/Footer';
+import FloatingSocial from '@/app/components/ui/FloatingSocial';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({ 
@@ -28,6 +29,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           <main>{children}</main>
+          <FloatingSocial />
           <Footer />
         </Providers>
       </body>

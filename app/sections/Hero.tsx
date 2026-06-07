@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FiMail, FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi';
 import Button from '@/app/components/ui/Button';
 import { personalInfo } from '@/app/lib/data';
+import ParticleBackground from '@/app/components/ui/ParticleBackground';
 
 export default function Hero() {
   const containerVariants = {
@@ -96,6 +97,7 @@ export default function Hero() {
           </Button>
         </motion.div>
       </motion.div>
+      <ParticleBackground />
     </section>
   );
 }

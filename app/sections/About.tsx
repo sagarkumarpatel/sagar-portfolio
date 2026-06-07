@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiBriefcase, FiTarget, FiAward } from 'react-icons/fi';
 import { personalInfo, education, codingStats } from '@/app/lib/data';
+import Counter from '@/app/components/ui/Counter';
 
 export default function About() {
   const [ref, inView] = useInView({
@@ -11,10 +12,10 @@ export default function About() {
     threshold: 0.1,
   });
 
-  const stats = [
-  { label: 'LeetCode Rating', value: codingStats.leetcodeRating, icon: FiAward, color: 'from-yellow-500 to-orange-500' },
-  { label: 'Problems Solved', value: `${codingStats.leetcodeProblems}+`, icon: FiTarget, color: 'from-green-500 to-emerald-500' },
-  { label: 'Projects Completed', value: `${codingStats.projectsCompleted}+`, icon: FiBriefcase, color: 'from-blue-500 to-cyan-500' },
+ const stats = [
+  { label: 'LeetCode Rating', value: codingStats.leetcodeRating, isCounter: true, suffix: '', icon: FiAward, color: 'from-yellow-500 to-orange-500' },
+  { label: 'Problems Solved', value: codingStats.leetcodeProblems, isCounter: true, suffix: '+', icon: FiTarget, color: 'from-green-500 to-emerald-500' },
+  { label: 'Projects Completed', value: codingStats.projectsCompleted, isCounter: true, suffix: '+', icon: FiBriefcase, color: 'from-blue-500 to-cyan-500' },
 ];
 
   return (
@@ -78,7 +79,13 @@ export default function About() {
                   <div className={`inline-flex p-2 rounded-lg bg-gradient-to-r ${stat.color} mb-2`}>
                     <stat.icon className="text-white text-xl" />
                   </div>
-                  <div className="text-2xl font-bold">{stat.value}</div>
+                 {stat.isCounter ? (
+                  <div className="text-2xl font-bold">
+                        <Counter end={stat.value} suffix={stat.suffix} />
+                  </div>
+                           ) : (
+                   <div className="text-2xl font-bold">{stat.value}</div>
+                 )}
                   <div className="text-xs text-gray-500 dark:text-gray-400">{stat.label}</div>
                 </motion.div>
               ))}

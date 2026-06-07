@@ -86,7 +86,7 @@ export const projects: Project[] = [
       'Scalable architecture design'
     ],
     githubUrl: 'https://github.com/sagarkumarpatel/Tourist_Ai',
-    liveUrl: 'tourist-ai-4.onrender.com',
+    liveUrl: 'https://tourist-ai-4.onrender.com/',
     images: ['/projects/tourism-1.jpg', '/projects/tourism-2.jpg'],
     year: 2026,
     category: 'fullstack'
@@ -110,7 +110,7 @@ export const projects: Project[] = [
       'Handling network disconnections'
     ],
     githubUrl: 'https://github.com/sagarkumarpatel/LTalk',
-    liveUrl: 'ltalkfrontend.onrender.com',
+    liveUrl: 'https://ltalkfrontend.onrender.com/',
     images: ['/projects/video-1.jpg', '/projects/video-2.jpg'],
     year: 2026,
     category: 'fullstack'
