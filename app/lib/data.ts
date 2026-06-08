@@ -10,6 +10,7 @@ export const personalInfo = {
   github: 'https://github.com/sagarkumarpatel',
   linkedin: 'https://www.linkedin.com/in/sagar-patel-8aa0b8324/',
   leetcode: 'https://leetcode.com/u/SagarPatel98212/',
+  instagram: 'https://www.instagram.com/sagar1_xx?igsh=MXZwcHU3YmRjZGY3Zg==', 
 };
 
 // Add codingStats here
@@ -19,7 +20,7 @@ export const codingStats = {
   leetcodeProblems: 400,  // Updated from 350 to 400
   skillrackRank: 9909,
   skillrackProblems: 1430,
-  hackathonWins: 3,
+  hackathonWins: 2,
   projectsCompleted: 6,
 };
 
