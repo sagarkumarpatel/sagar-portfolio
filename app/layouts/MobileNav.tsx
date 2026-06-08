@@ -221,7 +221,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   </motion.a>
                   <motion.a
                     variants={itemVariants}
-                    href="https://leetcode.com/sagarpatel"
+                    href={personalInfo.leetcode}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-between px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"

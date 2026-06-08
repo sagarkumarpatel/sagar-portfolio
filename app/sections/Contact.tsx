@@ -101,8 +101,7 @@ export default function Contact() {
   const socialLinks = [
     { icon: FiGithub, href: personalInfo.github, label: 'GitHub' },
     { icon: FiLinkedin, href: personalInfo.linkedin, label: 'LinkedIn' },
-    { icon: FiTwitter, href: 'https://twitter.com/sagarpatel', label: 'Twitter' },
-    { icon: FiInstagram, href: 'https://instagram.com/sagarpatel', label: 'Instagram' },
+    { icon: FiInstagram, href: personalInfo.instagram, label: 'Instagram' },
   ];
 
   return (

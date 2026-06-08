@@ -45,8 +45,7 @@ const footerLinks: FooterSection = {
 const socialLinks = [
   { icon: FiGithub, href: personalInfo.github, label: 'GitHub', color: 'hover:bg-gray-800' },
   { icon: FiLinkedin, href: personalInfo.linkedin, label: 'LinkedIn', color: 'hover:bg-blue-600' },
-  { icon: FiTwitter, href: 'https://twitter.com/sagarpatel', label: 'Twitter', color: 'hover:bg-blue-400' },
-  { icon: FiInstagram, href: 'https://instagram.com/sagarpatel', label: 'Instagram', color: 'hover:bg-pink-600' },
+  { icon: FiInstagram, href: personalInfo.instagram, label: 'Instagram', color: 'hover:bg-pink-600' },
   { icon: FiMail, href: `mailto:${personalInfo.email}`, label: 'Email', color: 'hover:bg-red-500' },
 ];
 
