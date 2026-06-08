@@ -198,14 +198,18 @@ export const achievements: Achievement[] = [
     title: 'Winner - Tech Expo 2026',
     description: 'Secured first place at IIT Hyderabad Tech Expo for innovative tech project',
     date: '2026',
-    type: 'hackathon'
+    type: 'hackathon',
+    image: '/achievements/iit-hyderabad.jpg',  // Add your photo/certificate image
+    certificate: '/certificates/iit-hyderabad.pdf',  // Add PDF certificate if available
   },
   {
     id: 'aiml-hackathon',
     title: 'Winner - 5Hrs AIML Hackathon',
     description: 'First place at Sri Eshwar College of Engineering, Coimbatore',
     date: '2025',
-    type: 'hackathon'
+    type: 'hackathon',
+    image: '/achievements/aiml-hackathon.jpg',  // Add your photo/certificate image
+    certificate: '/certificates/aiml-hackathon.pdf',  // Add PDF certificate if available
   },
   {
     id: 'leetcode',
@@ -213,34 +217,43 @@ export const achievements: Achievement[] = [
     description: 'Top 11% globally | 400+ problems solved',
     date: '2026',
     type: 'coding',
-    link: 'https://leetcode.com/u/SagarPatel98212/'
+    link: 'https://leetcode.com/u/SagarPatel98212/',
+    image: '/achievements/Leetcode.png',  // Screenshot of your LeetCode profile/stats
   },
   {
     id: 'skillrack',
     title: 'SkillRack Rank #9909',
     description: '1430+ problems solved',
     date: '2026',
-    type: 'coding'
+    type: 'coding',
+    image: '/achievements/skillrack-stats.jpg',  // Screenshot of your SkillRack profile
   },
   {
     id: 'dsa-cert',
     title: 'DSA Using C/C++',
     description: 'Udemy Certification',
     date: '2025',
-    type: 'certification'
+    type: 'certification',
+    image: '/achievements/data_structure certipicate.jpg',  // Certificate image
+    certificate: '/certificates/DATA_STRUCTURE CERTIPICATE',  // PDF certificate
   },
   {
     id: 'oracle-java',
     title: 'Java Oracle Badge',
     description: 'Oracle Certification',
     date: '2025',
-    type: 'certification'
+    type: 'certification',
+    image: '/achievements/Oracle.png',  // Badge screenshot
+    certificate: '/certificates/oracle-java.pdf',  // PDF certificate
+    link: 'https://catalog-education.oracle.com/pls/certview/sharebadge?id=YOUR_BADGE_ID',  // Oracle badge link
   },
   {
     id: 'mysql-cert',
     title: 'MySQL (Easy/Intermediate)',
     description: 'HackerRank Certification',
     date: '2025',
-    type: 'certification'
-  }
+    type: 'certification',
+    image: '/achievements/mysql-cert.jpg',  // Certificate screenshot
+    link: 'https://www.hackerrank.com/certificates/YOUR_CERTIFICATE_ID',  // HackerRank verification link
+  },
 ];

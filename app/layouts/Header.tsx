@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiBook, FiAward, FiMail } from 'react-icons/fi';
+import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiBook, FiAward, FiMail,FiImage } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
 import MobileNav from './MobileNav';
 
@@ -15,6 +15,7 @@ const navItems = [
   { name: 'Experience', href: '#experience', icon: FiBriefcase },
   { name: 'Education', href: '#education', icon: FiBook },
   { name: 'Achievements', href: '#achievements', icon: FiAward },
+  { name: 'Gallery', href: '#achievement-gallery', icon: FiImage },
   { name: 'Contact', href: '#contact', icon: FiMail },
 ];
 

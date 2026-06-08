@@ -9,6 +9,7 @@ import Education from '@/app/sections/Education';
 import Achievements from '@/app/sections/Achievements';
 import Contact from '@/app/sections/Contact';
 import { motion } from 'framer-motion';
+import AchievementGallery from './sections/AchievementGallery';
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <Experience />
       <Education />
       <Achievements />
+      <AchievementGallery />
       <Contact />
     </motion.div>
   );

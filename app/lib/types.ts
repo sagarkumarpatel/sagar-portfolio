@@ -58,6 +58,8 @@ export interface Achievement {
   date: string;
   type: 'hackathon' | 'certification' | 'coding' | 'award';
   link?: string;
+  image?: string;  // Add this
+  certificate?: string;  // Add this
 }
 
 export interface SocialLink {
