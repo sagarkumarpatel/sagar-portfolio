@@ -15,7 +15,7 @@ import { skills } from '@/app/lib/data';
 const skillIcons: Record<string, any> = {
   // Programming Languages
   'C/C++': SiCplusplus,
-  'Java': FaJava,  // ADDED
+  'Java': FaJava,
   'JavaScript': SiJavascript,
   'Python': SiPython,
   'TypeScript': SiTypescript,
@@ -24,15 +24,15 @@ const skillIcons: Record<string, any> = {
   'React.js': SiReact,
   'Next.js': SiNextdotjs,
   'Tailwind CSS': SiTailwindcss,
-  'Bootstrap': SiBootstrap,  // ADDED
-  'EJS': SiReact,  // ADDED (fallback)
+  'Bootstrap': SiBootstrap,
+  'EJS': SiReact,
   
   // Backend
   'Node.js': SiNodedotjs,
   'Express.js': SiExpress,
-  'REST APIs': SiReact,  // ADDED (fallback icon)
-  'Socket.io': SiSocketdotio,  // ADDED
-  'WebRTC': SiWebrtc,  // ADDED
+  'REST APIs': SiReact,
+  'Socket.io': SiSocketdotio,
+  'WebRTC': SiWebrtc,
   
   // Databases
   'MongoDB': SiMongodb,
@@ -42,9 +42,28 @@ const skillIcons: Record<string, any> = {
   // Tools
   'Git/GitHub': SiGit,
   'Docker': SiDocker,
-  'GitHub Actions': SiGithubactions,  // ADDED
+  'GitHub Actions': SiGithubactions,
   'AWS': FaAws,
   'Postman': SiPostman,
+};
+
+// Helper function to get tailwind color class from gradient
+const getColorFromGradient = (gradient: string) => {
+  const colorMap: Record<string, string> = {
+    'from-red-500': 'text-red-500',
+    'from-blue-500': 'text-blue-500',
+    'from-green-500': 'text-green-500',
+    'from-purple-500': 'text-purple-500',
+    'from-yellow-500': 'text-yellow-500',
+    'from-indigo-500': 'text-indigo-500',
+  };
+  
+  for (const [key, value] of Object.entries(colorMap)) {
+    if (gradient.includes(key)) {
+      return value;
+    }
+  }
+  return 'text-blue-500';
 };
 
 export default function Skills() {
@@ -60,6 +79,10 @@ export default function Skills() {
     tools: { title: '🛠️ Tools', color: 'from-yellow-500 to-amber-500' },
     core: { title: '📚 Core CS', color: 'from-indigo-500 to-violet-500' },
   };
+
+  // Calculate circle circumference
+  const radius = 20;
+  const circumference = 2 * Math.PI * radius;
 
   return (
     <section ref={ref} id="skills" className="py-20 px-4 bg-gray-50 dark:bg-gray-800/30">
@@ -93,6 +116,8 @@ export default function Skills() {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {categorySkills.map((skill, index) => {
                   const Icon = skillIcons[skill.name];
+                  const progressColor = getColorFromGradient(color);
+                  
                   return (
                     <motion.div
                       key={skill.name}
@@ -110,15 +135,44 @@ export default function Skills() {
                       <div className="relative bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-md hover:shadow-xl transition-all">
                         {Icon && <Icon className="text-3xl mx-auto mb-2 text-gray-700 dark:text-gray-300" />}
                         <div className="font-medium text-sm">{skill.name}</div>
-                        <div className="mt-2 h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={isInView ? { width: `${skill.level}%` } : {}}
-                            transition={{ duration: 1, delay: catIndex * 0.1 + index * 0.02 }}
-                            className={`h-full bg-gradient-to-r ${color} rounded-full`}
-                          />
+                        
+                        {/* Circular Progress Ring */}
+                        <div className="relative mt-3 flex justify-center">
+                          <svg className="w-14 h-14 transform -rotate-90">
+                            {/* Background circle */}
+                            <circle
+                              className="text-gray-200 dark:text-gray-700"
+                              strokeWidth="3"
+                              stroke="currentColor"
+                              fill="transparent"
+                              r={radius}
+                              cx="28"
+                              cy="28"
+                            />
+                            {/* Progress circle */}
+                            <motion.circle
+                              className={progressColor}
+                              strokeWidth="3"
+                              strokeDasharray={circumference}
+                              initial={{ strokeDashoffset: circumference }}
+                              animate={{ 
+                                strokeDashoffset: isInView 
+                                  ? circumference * (1 - skill.level / 100)
+                                  : circumference
+                              }}
+                              transition={{ duration: 1, delay: catIndex * 0.1 + index * 0.02 }}
+                              stroke="currentColor"
+                              fill="transparent"
+                              r={radius}
+                              cx="28"
+                              cy="28"
+                            />
+                          </svg>
+                          {/* Percentage text inside circle */}
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <span className="text-xs font-bold">{skill.level}%</span>
+                          </div>
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">{skill.level}%</div>
                       </div>
                     </motion.div>
                   );
