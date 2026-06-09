@@ -75,19 +75,32 @@ export default function Header() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
-            <Link href="/" className="relative group">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-              >
-                Sagar<span className="text-gray-800 dark:text-white">.dev</span>
-              </motion.div>
-              <motion.div
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 origin-left"
-              />
-            </Link>
+        <Link href="/" className="relative group">
+  <div className="flex items-center gap-2">
+    {/* Logo Icon */}
+    <motion.div
+      whileHover={{ rotate: 360 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="relative w-10 h-10"
+    >
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-white font-bold text-lg font-['Orbitron'] tracking-wider">SP</span>
+      </div>
+    </motion.div>
+    
+    {/* Logo Text - Futuristic Style with Orbitron */}
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="text-2xl font-bold font-['Orbitron'] tracking-wider"
+    >
+      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+        SAGAR
+      </span>
+      <span className="text-gray-800 dark:text-white font-light">.dev</span>
+    </motion.div>
+  </div>
+</Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-1">
