@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  turbopack: {
-    root: __dirname,
-  },
   images: {
     domains: ['github.com', 'avatars.githubusercontent.com'],
     formats: ['image/avif', 'image/webp'],
