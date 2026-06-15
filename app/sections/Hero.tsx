@@ -1,69 +1,132 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
-import { FiMail, FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin, FiDownload, FiCode, FiDatabase } from 'react-icons/fi';
 import Button from '@/app/components/ui/Button';
 import { personalInfo } from '@/app/lib/data';
 import ParticleBackground from '@/app/components/ui/ParticleBackground';
 import Image from 'next/image';
 
 export default function Hero() {
+  // Typewriter Effect State
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Typewriter Logic
+  useEffect(() => {
+    const name = personalInfo.name;
+    let typingSpeed = isDeleting ? 100 : 100; // Deleting is faster than typing
+
+    if (!isDeleting && displayText === name) {
+      typingSpeed = 2000; // Pause at the end of typing
+      setIsDeleting(true);
+    } else if (isDeleting && displayText === '') {
+      typingSpeed = 800; // Pause before typing starts again
+      setIsDeleting(false);
+    }
+
+    const timeout = setTimeout(() => {
+      setDisplayText(
+        name.substring(0, displayText.length + (isDeleting ? -1 : 1))
+      );
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting]);
+
+  // Framer Motion Variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { 
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
     }
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      filter: 'blur(0px)',
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    }
   };
 
   const imageVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.8, rotate: -5 },
+    hidden: { opacity: 0, scale: 0.8, rotate: -5, filter: 'blur(20px)' },
     visible: { 
       opacity: 1, 
       scale: 1, 
       rotate: 0,
+      filter: 'blur(0px)',
       transition: { 
-        duration: 0.6, 
-        ease: "easeOut" 
+        duration: 1.2, 
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.4
       }
     }
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center pt-20 px-4 relative">
-      <div className="max-w-6xl mx-auto">
+    <section className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden font-sans">
+      {/* Background: Aurora Glow & Grid Pattern */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[128px] animate-blob" />
+        <div className="absolute top-40 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000" />
+      </div>
+
+      <div className="max-w-6xl mx-auto w-full z-10">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20"
+          className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-24"
         >
           {/* Left Column - Text Content */}
-          <div className="flex-1 text-center lg:text-left">
-            {/* Badge */}
-            <motion.div variants={itemVariants} className="mb-6">
-              <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-600 dark:text-blue-400 text-sm font-medium border border-blue-500/20">
-                ✨ Available for opportunities
+          <div className="flex-1 text-center lg:text-left z-10">
+            
+            {/* Premium Badge */}
+            <motion.div variants={itemVariants} className="mb-8 flex justify-center lg:justify-start">
+              <span className="relative inline-flex overflow-hidden rounded-full p-[1px]">
+                <span className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 animate-[spin_3s_linear_infinite]" />
+                <span className="inline-flex items-center justify-center w-full h-full px-5 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 bg-white/90 dark:bg-gray-950/90 backdrop-blur-3xl rounded-full">
+                  <span className="mr-2 animate-pulse">✨</span> Available for opportunities
+                </span>
               </span>
             </motion.div>
 
-            {/* Name */}
+            {/* Name: Typewriter Animation */}
             <motion.h1 
               variants={itemVariants}
-              className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-400 dark:to-white bg-clip-text text-transparent"
+              className="text-5xl md:text-7xl lg:text-6xl font-extrabold tracking-tight mb-4 flex flex-wrap justify-center lg:justify-start items-center min-h-[1.2em]"
             >
-              {personalInfo.name}
+              {/* Screen reader only text for accessibility and SEO */}
+              <span className="sr-only">{personalInfo.name}</span>
+              
+              {/* Visible animated text */}
+              <span aria-hidden="true" className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-blue-600 to-gray-900 dark:from-white dark:via-blue-400 dark:to-white bg-[length:200%_auto] animate-gradient">
+                {displayText}
+              </span>
+              
+              {/* Glowing blinking cursor */}
+              <span 
+                aria-hidden="true" 
+                className="text-blue-500 dark:text-blue-400 font-light ml-1 animate-[pulse_1s_ease-in-out_infinite] drop-shadow-[0_0_8px_rgba(59,130,246,0.8)] -mt-2"
+              >
+                |
+              </span>
             </motion.h1>
 
             {/* Title */}
             <motion.h2 
               variants={itemVariants}
-              className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-4"
+              className="text-2xl md:text-3xl font-medium tracking-tight text-gray-600 dark:text-gray-300 mb-6"
             >
               {personalInfo.title}
             </motion.h2>
@@ -71,7 +134,7 @@ export default function Hero() {
             {/* Description */}
             <motion.p 
               variants={itemVariants}
-              className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-8"
+              className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
             >
               {personalInfo.shortIntro}
             </motion.p>
@@ -81,84 +144,96 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
-              <Button 
-                href={personalInfo.resumeUrl}
-                variant="primary"
-                icon={<FiDownload />}
-                download
-              >
-                Download Resume
-              </Button>
-              <Button 
-                href={`mailto:${personalInfo.email}`}
-                variant="outline"
-                icon={<FiMail />}
-              >
-                Email Me
-              </Button>
-              <Button 
-                href={personalInfo.linkedin}
-                variant="outline"
-                icon={<FiLinkedin />}
-                external
-              >
-                LinkedIn
-              </Button>
-              <Button 
-                href={personalInfo.github}
-                variant="outline"
-                icon={<FiGithub />}
-                external
-              >
-                GitHub
-              </Button>
+              <div className="group relative">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-500" />
+                <div className="relative">
+                  <Button 
+                    href={personalInfo.resumeUrl}
+                    variant="primary"
+                    icon={<FiDownload />}
+                    download
+                  >
+                    Download Resume
+                  </Button>
+                </div>
+              </div>
+
+              <div className="relative hover:-translate-y-1 transition-transform duration-300">
+                <Button 
+                  href={`mailto:${personalInfo.email}`}
+                  variant="outline"
+                  icon={<FiMail />}
+                >
+                  Email Me
+                </Button>
+              </div>
+
+              <div className="relative hover:-translate-y-1 transition-transform duration-300">
+                <Button 
+                  href={personalInfo.linkedin}
+                  variant="outline"
+                  icon={<FiLinkedin />}
+                  external
+                >
+                  LinkedIn
+                </Button>
+              </div>
+
+              <div className="relative hover:-translate-y-1 transition-transform duration-300">
+                <Button 
+                  href={personalInfo.github}
+                  variant="outline"
+                  icon={<FiGithub />}
+                  external
+                >
+                  GitHub
+                </Button>
+              </div>
             </motion.div>
           </div>
 
           {/* Right Column - Profile Image */}
           <motion.div
             variants={imageVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex-1 flex justify-center"
+            className="flex-1 flex justify-center relative w-full max-w-md"
           >
             <motion.div
-              className="relative cursor-pointer"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              animate={{ y: [-15, 15, -15] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-72 h-72 md:w-96 md:h-96 cursor-pointer group"
             >
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient opacity-75 blur-xl" />
+              {/* Complex Orbiting Glowing Rings */}
+              <div className="absolute inset-0 rounded-full border border-blue-500/20 dark:border-blue-400/20 animate-[spin_10s_linear_infinite] scale-110" />
+              <div className="absolute inset-0 rounded-full border border-purple-500/20 dark:border-purple-400/20 animate-[spin_15s_linear_infinite_reverse] scale-125" />
+              
+              {/* Glassmorphism Background Glow */}
+              <div className="absolute inset-4 rounded-full bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 opacity-40 blur-2xl group-hover:opacity-60 transition-opacity duration-500" />
               
               {/* Image Container */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+              <div className="relative w-full h-full rounded-full overflow-hidden border border-white/40 dark:border-white/10 shadow-[0_0_40px_-10px_rgba(59,130,246,0.5)] bg-gray-100 dark:bg-gray-900 group-hover:scale-105 transition-transform duration-500 ease-out">
                 <Image
                   src="/sagarkumar.png"
                   alt={personalInfo.name}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                   priority
-                  sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                  sizes="(max-width: 768px) 288px, 384px"
                 />
+                <div className="absolute inset-0 rounded-full shadow-[inset_0_0_20px_rgba(0,0,0,0.2)] pointer-events-none" />
               </div>
-              
-              {/* Decorative ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full border-2 border-blue-500/30 pointer-events-none"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+
+              {/* Interactive Tech Orbs */}
+              <div className="absolute top-10 -right-4 w-12 h-12 bg-white/10 dark:bg-gray-800/50 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center animate-[bounce_3s_ease-in-out_infinite] shadow-xl">
+                <FiCode className="text-xl text-blue-500" />
+              </div>
+              <div className="absolute bottom-10 -left-4 w-10 h-10 bg-white/10 dark:bg-gray-800/50 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center animate-[bounce_4s_ease-in-out_infinite_reverse] shadow-xl">
+                <FiDatabase className="text-lg text-purple-500" />
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
+
       <ParticleBackground />
     </section>
   );

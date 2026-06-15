@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // CRITICAL: Enable dark mode with class strategy
-  darkMode: 'class',  // ← ADD THIS LINE
+  darkMode: 'class',  
   
   // 1. Tell Tailwind where to look for your CSS classes
   content: [
@@ -21,12 +21,16 @@ module.exports = {
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
       },
-      // Add animations if needed
       animation: {
+        // Your existing animations (kept exactly as they were)
         'gradient': 'gradient 3s ease infinite',
         'float': 'float 6s ease-in-out infinite',
+        
+        // NEW: Added for the Hero component background
+        'blob': 'blob 7s infinite', 
       },
       keyframes: {
+        // Your existing keyframes
         gradient: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
@@ -34,6 +38,14 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
+        },
+        
+        // NEW: Added for the Hero component background
+        blob: {
+          '0%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+          '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+          '100%': { transform: 'translate(0px, 0px) scale(1)' },
         },
       },
     },

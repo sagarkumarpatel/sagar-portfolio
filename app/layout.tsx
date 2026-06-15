@@ -5,6 +5,13 @@ import { Providers } from './providers';
 import Header from '@/app/layouts/Header';
 import Footer from '@/app/layouts/Footer';
 
+import { Plus_Jakarta_Sans } from 'next/font/google';
+
+const jakarta = Plus_Jakarta_Sans({ 
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+});
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
@@ -91,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${jakarta.variable} font-sans`}>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${orbitron.variable} ${poppins.variable} font-sans`}>
         <Providers>
           <Header />

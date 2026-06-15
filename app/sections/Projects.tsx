@@ -10,7 +10,6 @@ const categories = ['All', 'fullstack', 'ecommerce', 'ai'];
 
 export default function Projects() {
   const [filter, setFilter] = useState('All');
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const filteredProjects = filter === 'All' 
     ? projects 
@@ -35,10 +34,10 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full font-medium transition-all ${
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 filter === cat
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 scale-105'
+                  : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-105'
               }`}
             >
               {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -62,19 +61,54 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-                onHoverStart={() => setHoveredId(project.id)}
-                onHoverEnd={() => setHoveredId(null)}
-                className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700"
+                whileHover={{ y: -8, scale: 1.01 }}
+                // Updated Card Styling: Added flex-col to push buttons to the bottom, nicer borders, and glow on hover
+                className="group flex flex-col bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 border border-gray-100 dark:border-gray-700/50 hover:border-blue-400/50 transition-all duration-300"
               >
-                {/* Project Image Placeholder */}
-                <div className="relative h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                  <FiCode className="text-white/30 text-6xl" />
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: hoveredId === project.id ? 1 : 0 }}
-                    className="absolute inset-0 bg-black/50 flex items-center justify-center gap-4"
-                  >
+                {/* Project Image Placeholder - Added subtle scale animation on hover */}
+                <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                  <FiCode className="text-gray-300 dark:text-gray-700 text-7xl group-hover:text-blue-500/50 transition-colors duration-300 z-10" />
+                </div>
+
+                {/* Content Section */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
+                    {project.description}
+                  </p>
+                  
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.techStack.slice(0, 4).map(tech => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/30"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                        +{project.techStack.length - 4}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Key Features */}
+                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
+                    {project.features.slice(0, 3).map(feature => (
+                      <li key={feature} className="flex items-start gap-2">
+                        <span className="text-blue-500 mt-0.5">▹</span>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Links Section - Now always visible at the bottom of the card */}
+                  <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50 flex flex-wrap gap-4">
                     <Button href={project.githubUrl} variant="outline" small icon={<FiGithub />}>
                       Code
                     </Button>
@@ -83,40 +117,7 @@ export default function Projects() {
                         Live
                       </Button>
                     )}
-                  </motion.div>
-                </div>
-
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.techStack.slice(0, 4).map(tech => (
-                      <span
-                        key={tech}
-                        className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.techStack.length > 4 && (
-                      <span className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800">
-                        +{project.techStack.length - 4}
-                      </span>
-                    )}
                   </div>
-
-                  {/* Key Features */}
-                  <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-400">
-                    {project.features.slice(0, 3).map(feature => (
-                      <li key={feature} className="flex items-start gap-2">
-                        <span className="text-blue-500 mt-1">▹</span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </motion.div>
             ))}
