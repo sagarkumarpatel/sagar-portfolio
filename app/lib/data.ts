@@ -168,7 +168,7 @@ export const education: Education[] = [
     location: 'Coimbatore, India',
     startDate: '2024',
     endDate: '2028',
-    score: '8.32 CGPA (3rd Semester)',
+    // score: '8.32 CGPA (3rd Semester)',
     coursework: ['Data Structures', 'Algorithms', 'DBMS', 'Computer Networks', 'Operating Systems', 'Web Development']
   },
   {
