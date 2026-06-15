@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "critters": "^0.0.23",
     "framer-motion": "^12.40.0",
     "next": "^14.1.0",
@@ -18,6 +20,7 @@
     "react-icons": "^5.6.0",
     "react-intersection-observer": "^10.0.3",
     "react-tsparticles": "^2.12.2",
+    "three": "^0.184.0",
     "tsparticles-engine": "^2.12.0",
     "tsparticles-slim": "^2.12.0"
   },
@@ -26,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.184.1",
     "autoprefixer": "^10.5.0",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",

@@ -47,7 +47,7 @@ export interface Education {
   location: string;
   startDate: string;
   endDate: string;
-  score: string;
+  // score: string;
   coursework: string[];
 }
 

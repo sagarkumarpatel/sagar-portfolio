@@ -59,8 +59,8 @@ export const skills: Skill[] = [
   { name: 'Postman', level: 88, category: 'tools' },
   
   // Core CS
-  { name: 'Data Structures', level: 90, category: 'core' },
-  { name: 'Algorithms', level: 88, category: 'core' },
+  { name: 'Data Structures & Algorithms', level: 90, category: 'core' },
+  // { name: 'Algorithms', level: 88, category: 'core' },
   { name: 'OOP', level: 92, category: 'core' },
   { name: 'DBMS', level: 85, category: 'core' },
   { name: 'Computer Networks', level: 80, category: 'core' },
@@ -178,8 +178,8 @@ export const education: Education[] = [
     location: 'Nepal',
     startDate: '2021',
     endDate: '2023',
-    score: '73%',
-    coursework: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science']
+    // score: '73%',
+    coursework: ['Physics', 'Chemistry', 'Mathematics', 'Biology']
   },
   {
     id: 'schooling-10',
@@ -188,7 +188,7 @@ export const education: Education[] = [
     location: 'Nepal',
     startDate: '2020',
     endDate: '2021',
-    score: '87.50%',
+    // score: '87.50%',
     coursework: ['Science', 'Mathematics', 'English', 'Social Studies']
   }
 ];
@@ -200,7 +200,7 @@ export const achievements: Achievement[] = [
     description: 'Secured first place at IIT Hyderabad Tech Expo for innovative tech project',
     date: '2026',
     type: 'hackathon',
-    image: '/achievements/iit-hyderabad.jpg',  // Add your photo/certificate image
+    image: '/achievements/Thrust_Expo.jpg',  // Add your photo/certificate image
     certificate: '/certificates/iit-hyderabad.pdf',  // Add PDF certificate if available
   },
   {
@@ -209,7 +209,7 @@ export const achievements: Achievement[] = [
     description: 'First place at Sri Eshwar College of Engineering, Coimbatore',
     date: '2025',
     type: 'hackathon',
-    image: '/achievements/aiml-hackathon.jpg',  // Add your photo/certificate image
+    image: '/achievements/AI&ML_Hackathon.jpg',  // Add your photo/certificate image
     certificate: '/certificates/aiml-hackathon.pdf',  // Add PDF certificate if available
   },
   {
@@ -219,7 +219,7 @@ export const achievements: Achievement[] = [
     date: '2026',
     type: 'coding',
     link: 'https://leetcode.com/u/SagarPatel98212/',
-    image: '/achievements/Leetcode.png',  // Screenshot of your LeetCode profile/stats
+    image: '/achievements/leetcode.png',  // Screenshot of your LeetCode profile/stats
   },
   {
     id: 'skillrack',
@@ -227,7 +227,7 @@ export const achievements: Achievement[] = [
     description: '1430+ problems solved',
     date: '2026',
     type: 'coding',
-    image: '/achievements/skillrack-stats.jpg',  // Screenshot of your SkillRack profile
+    image: '/achievements/SkillRack_profile.png',  // Screenshot of your SkillRack profile
   },
   {
     id: 'dsa-cert',
@@ -254,7 +254,7 @@ export const achievements: Achievement[] = [
     description: 'HackerRank Certification',
     date: '2025',
     type: 'certification',
-    image: '/achievements/mysql-cert.jpg',  // Certificate screenshot
+    image: '/achievements/Sql.png',  // Certificate screenshot
     link: 'https://www.hackerrank.com/certificates/YOUR_CERTIFICATE_ID',  // HackerRank verification link
   },
 ];

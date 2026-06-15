@@ -66,7 +66,8 @@ export default function Header() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        // Changed z-50 to z-[999] here to force it above all 3D content
+        className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${
           isScrolled
             ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
             : 'bg-transparent'

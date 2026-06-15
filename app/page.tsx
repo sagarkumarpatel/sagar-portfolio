@@ -2,7 +2,7 @@
 
 import Hero from '@/app/sections/Hero';
 import About from '@/app/sections/About';
-import Skills from '@/app/sections/Skills';
+// import Skills from '@/app/sections/Skills';
 import Projects from '@/app/sections/Projects';
 import Experience from '@/app/sections/Experience';
 import Education from '@/app/sections/Education';
@@ -10,6 +10,7 @@ import Achievements from '@/app/sections/Achievements';
 import Contact from '@/app/sections/Contact';
 import { motion } from 'framer-motion';
 import AchievementGallery from './sections/AchievementGallery';
+import Skills3D from '@/app/sections/Skills3D';
 
 export default function Home() {
   return (
@@ -20,7 +21,8 @@ export default function Home() {
     >
       <Hero />
       <About />
-      <Skills />
+      <Skills3D />
+      {/* <Skills /> */}
       <Projects />
       <Experience />
       <Education />

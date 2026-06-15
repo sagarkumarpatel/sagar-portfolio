@@ -56,9 +56,9 @@ export default function Education() {
                   <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
                   <p className="text-blue-600 dark:text-blue-400 font-medium">{edu.institution}</p>
                 </div>
-                <div className={`text-xl font-bold ${getScoreColor(edu.score)}`}>
+                {/* <div className={`text-xl font-bold ${getScoreColor(edu.score)}`}>
                   {edu.score}
-                </div>
+                </div> */}
               </div>
 
               <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
