@@ -197,7 +197,7 @@ export const achievements: Achievement[] = [
   {
     id: 'iit-hyderabad',
     title: 'Winner - Tech Expo 2026',
-    description: 'Secured first place at IIT Hyderabad Tech Expo for innovative tech project',
+    description: 'Secured Second place at IIT Hyderabad Tech Expo for innovative tech project',
     date: '2026',
     type: 'hackathon',
     image: '/achievements/Thrust_Expo.jpg',  // Add your photo/certificate image
