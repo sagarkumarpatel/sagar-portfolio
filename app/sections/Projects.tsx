@@ -11,8 +11,8 @@ const categories = ['All', 'fullstack', 'ecommerce', 'ai'];
 export default function Projects() {
   const [filter, setFilter] = useState('All');
 
-  const filteredProjects = filter === 'All' 
-    ? projects 
+  const filteredProjects = filter === 'All'
+    ? projects
     : projects.filter(p => p.category === filter);
 
   return (
@@ -34,11 +34,10 @@ export default function Projects() {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
-                filter === cat
+              className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${filter === cat
                   ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 scale-105'
                   : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-105'
-              }`}
+                }`}
             >
               {cat.charAt(0).toUpperCase() + cat.slice(1)}
             </button>
@@ -65,10 +64,20 @@ export default function Projects() {
                 // Updated Card Styling: Added flex-col to push buttons to the bottom, nicer borders, and glow on hover
                 className="group flex flex-col bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 border border-gray-100 dark:border-gray-700/50 hover:border-blue-400/50 transition-all duration-300"
               >
-                {/* Project Image Placeholder - Added subtle scale animation on hover */}
+                {/* Project Image */}
                 <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:scale-110 transition-transform duration-700 ease-out" />
-                  <FiCode className="text-gray-300 dark:text-gray-700 text-7xl group-hover:text-blue-500/50 transition-colors duration-300 z-10" />
+                  {project.images && project.images.length > 0 ? (
+                    <img 
+                      src={project.images[0]} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                      <FiCode className="text-gray-300 dark:text-gray-700 text-7xl group-hover:text-blue-500/50 transition-colors duration-300 z-10" />
+                    </>
+                  )}
                 </div>
 
                 {/* Content Section */}
@@ -79,7 +88,7 @@ export default function Projects() {
                   <p className="text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
                     {project.description}
                   </p>
-                  
+
                   {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-5">
                     {project.techStack.slice(0, 4).map(tech => (

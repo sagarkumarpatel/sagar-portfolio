@@ -10,18 +10,18 @@ export const personalInfo = {
   github: 'https://github.com/sagarkumarpatel',
   linkedin: 'https://www.linkedin.com/in/sagar-patel-8aa0b8324/',
   leetcode: 'https://leetcode.com/u/SagarPatel98212/',
-  instagram: 'https://www.instagram.com/sagar1_xx?igsh=MXZwcHU3YmRjZGY3Zg==', 
+  instagram: 'https://www.instagram.com/sagar1_xx?igsh=MXZwcHU3YmRjZGY3Zg==',
 };
 
 // Add codingStats here
 export const codingStats = {
   leetcodeRating: 1928,
   leetcodeRank: 'Top 11%',
-  leetcodeProblems: 400,  // Updated from 350 to 400
+  leetcodeProblems: 600,  // Updated from 350 to 400
   skillrackRank: 9909,
   skillrackProblems: 1430,
   hackathonWins: 2,
-  projectsCompleted: 6,
+  projectsCompleted: 8,
 };
 
 export const skills: Skill[] = [
@@ -31,33 +31,33 @@ export const skills: Skill[] = [
   { name: 'JavaScript', level: 90, category: 'languages' },
   { name: 'Python', level: 85, category: 'languages' },
   { name: 'TypeScript', level: 85, category: 'languages' },
-  
+
   // Frontend
   { name: 'React.js', level: 88, category: 'frontend' },
   { name: 'Next.js', level: 85, category: 'frontend' },
   { name: 'Tailwind CSS', level: 90, category: 'frontend' },
   { name: 'Bootstrap', level: 85, category: 'frontend' },
   { name: 'EJS', level: 80, category: 'frontend' },
-  
+
   // Backend
   { name: 'Node.js', level: 88, category: 'backend' },
   { name: 'Express.js', level: 90, category: 'backend' },
   { name: 'REST APIs', level: 92, category: 'backend' },
   { name: 'Socket.io', level: 85, category: 'backend' },
   { name: 'WebRTC', level: 80, category: 'backend' },
-  
+
   // Databases
   { name: 'MongoDB', level: 88, category: 'databases' },
   { name: 'PostgreSQL', level: 80, category: 'databases' },
   { name: 'MySQL', level: 85, category: 'databases' },
-  
+
   // Tools
   { name: 'Git/GitHub', level: 90, category: 'tools' },
   { name: 'Docker', level: 75, category: 'tools' },
   { name: 'GitHub Actions', level: 80, category: 'tools' },
   { name: 'AWS', level: 70, category: 'tools' },
   { name: 'Postman', level: 88, category: 'tools' },
-  
+
   // Core CS
   { name: 'Data Structures & Algorithms', level: 90, category: 'core' },
   // { name: 'Algorithms', level: 88, category: 'core' },
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/sagarkumarpatel/Tourist_Ai',
     liveUrl: 'https://tourist-ai-4.onrender.com/',
-    images: ['/projects/tourism-1.jpg', '/projects/tourism-2.jpg'],
+    images: ['/projects/TouristAi.png', '/projects/tourism-2.jpg'],
     year: 2026,
     category: 'fullstack'
   },
@@ -168,7 +168,7 @@ export const education: Education[] = [
     location: 'Coimbatore, India',
     startDate: '2024',
     endDate: '2028',
-    // score: '8.32 CGPA (3rd Semester)',
+    score: '8.52 CGPA',
     coursework: ['Data Structures', 'Algorithms', 'DBMS', 'Computer Networks', 'Operating Systems', 'Web Development']
   },
   {
@@ -215,11 +215,11 @@ export const achievements: Achievement[] = [
   {
     id: 'leetcode',
     title: 'LeetCode Rating 1928',
-    description: 'Top 11% globally | 400+ problems solved',
+    description: 'Top 10% globally | 600+ problems solved',
     date: '2026',
     type: 'coding',
     link: 'https://leetcode.com/u/SagarPatel98212/',
-    image: '/achievements/leetcode.png',  // Screenshot of your LeetCode profile/stats
+    image: '/achievements/leetcode600.png',  // Screenshot of your LeetCode profile/stats
   },
   {
     id: 'skillrack',
