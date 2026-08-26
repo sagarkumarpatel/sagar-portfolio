@@ -21,15 +21,15 @@ export default function Experience() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             Internships and professional experience
           </p>
         </motion.div>
 
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px h-full w-px bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500" />
+          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-px h-full w-px bg-gradient-to-b from-dark-accent via-orange-500 to-yellow-500" />
 
           {experiences.map((exp, index) => (
             <motion.div
@@ -42,40 +42,40 @@ export default function Experience() {
               }`}
             >
               {/* Timeline Node */}
-              <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 z-10">
-                <div className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-75" />
+              <div className="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-gradient-to-r from-dark-accent to-orange-500 z-10">
+                <div className="absolute inset-0 rounded-full bg-dark-accent animate-ping opacity-75" />
               </div>
 
               {/* Content */}
               <div className={`flex-1 ml-8 md:ml-0 ${
                 index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'
               }`}>
-                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="bg-dark-card border border-dark-borderGlow rounded-xl p-6 shadow-lg hover:shadow-xl hover:shadow-dark-accent/10 transition-shadow">
                   <div className="flex flex-wrap justify-between items-start mb-4">
                     <div>
-                      <h3 className="text-xl font-bold">{exp.title}</h3>
-                      <p className="text-blue-600 dark:text-blue-400 font-medium">{exp.company}</p>
+                      <h3 className="text-xl font-bold text-dark-textMain">{exp.title}</h3>
+                      <p className="text-dark-accent font-medium">{exp.company}</p>
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
+                    <div className="text-sm text-dark-textMuted">
                       {exp.current ? 'Present' : exp.endDate}
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-600 dark:text-gray-400">
+                  <div className="flex flex-wrap gap-4 mb-4 text-sm text-dark-textMuted">
                     <div className="flex items-center gap-1">
-                      <FiMapPin className="text-blue-500" />
+                      <FiMapPin className="text-dark-accent" />
                       <span>{exp.location}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <FiCalendar className="text-blue-500" />
+                      <FiCalendar className="text-dark-accent" />
                       <span>{exp.startDate} - {exp.current ? 'Present' : exp.endDate}</span>
                     </div>
                   </div>
 
                   <ul className="space-y-2 mb-4">
                     {exp.description.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2 text-gray-600 dark:text-gray-400">
-                        <FiCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                      <li key={i} className="flex items-start gap-2 text-dark-textMuted">
+                        <FiCheckCircle className="text-orange-500 mt-1 flex-shrink-0" />
                         <span className="text-sm">{item}</span>
                       </li>
                     ))}
@@ -85,7 +85,7 @@ export default function Experience() {
                     {exp.techStack.map(tech => (
                       <span
                         key={tech}
-                        className="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400"
+                        className="px-2 py-1 text-xs rounded-full bg-dark-bg border border-dark-borderGlow text-dark-textMuted"
                       >
                         {tech}
                       </span>
@@ -101,7 +101,7 @@ export default function Experience() {
 
           {/* If no experience, show placeholder */}
           {experiences.length === 0 && (
-            <div className="text-center py-12 text-gray-500">
+            <div className="text-center py-12 text-dark-textMuted">
               <FiBriefcase className="text-4xl mx-auto mb-4 opacity-50" />
               <p>No experience entries yet. Check back soon!</p>
             </div>

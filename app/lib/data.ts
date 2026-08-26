@@ -88,7 +88,7 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/sagarkumarpatel/Tourist_Ai',
     liveUrl: 'https://tourist-ai-4.onrender.com/',
-    images: ['/projects/TouristAi.png', '/projects/tourism-2.jpg'],
+    images: ['/projects/Screenshot 2026-08-25 222809.png', '/projects/tourism-2.jpg'],
     year: 2026,
     category: 'fullstack'
   },

@@ -85,7 +85,7 @@ export default function Footer() {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-blue-400 transition-colors text-sm inline-block"
+          className="text-dark-textMuted hover:text-dark-accent transition-colors text-sm inline-block min-h-[44px] flex items-center"
         >
           {link.name}
         </a>
@@ -109,7 +109,7 @@ export default function Footer() {
     return (
       <Link
         href={link.href}
-        className="text-gray-400 hover:text-blue-400 transition-colors text-sm inline-block"
+        className="text-dark-textMuted hover:text-dark-accent transition-colors text-sm inline-block min-h-[44px] flex items-center"
       >
         {link.name}
       </Link>
@@ -117,9 +117,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-gray-900 dark:bg-black text-white">
+    <footer className="relative bg-dark-bg text-dark-textMuted">
       {/* Animated Gradient Border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-dark-accent to-transparent opacity-50" />
       
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Main Footer Content */}
@@ -131,22 +131,22 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Sagar<span className="text-white">.dev</span>
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-dark-accent to-orange-500 bg-clip-text text-transparent">
+                Sagar<span className="text-dark-textMain">.dev</span>
               </h3>
-              <p className="text-gray-400 mb-4 max-w-md">
+              <p className="text-dark-textMuted mb-4 max-w-md">
                 Full Stack Developer passionate about building scalable web applications 
                 and solving complex problems with elegant solutions.
               </p>
               
               {/* Contact Info */}
               <div className="space-y-2 mb-4">
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <FiMail className="text-blue-400" />
+                <div className="flex items-center gap-2 text-sm text-dark-textMuted">
+                  <FiMail className="text-dark-accent" />
                   <span>{personalInfo.email}</span>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <FiMapPin className="text-blue-400" />
+                <div className="flex items-center gap-2 text-sm text-dark-textMuted">
+                  <FiMapPin className="text-dark-accent" />
                   <span>{personalInfo.location}</span>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function Footer() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     whileHover={{ y: -3 }}
-                    className={`p-2 rounded-full bg-gray-800 text-gray-400 transition-all ${social.color} hover:text-white`}
+                    className={`p-2 rounded-full bg-dark-card text-dark-textMuted transition-all hover:bg-dark-accent hover:text-white`}
                     aria-label={social.label}
                   >
                     <social.icon size={18} />

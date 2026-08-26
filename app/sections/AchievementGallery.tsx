@@ -36,7 +36,7 @@ export default function AchievementGallery() {
   const types = ['all', ...new Set(achievementsWithImages.map(a => a.type))];
 
   return (
-    <section ref={ref} id="achievement-gallery" className="py-20 px-4 bg-gray-50 dark:bg-gray-800/30">
+    <section ref={ref} id="achievement-gallery" className="py-20 px-4 bg-dark-bg">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,8 +45,8 @@ export default function AchievementGallery() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Achievement Gallery</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             Proof of excellence - Certificates, awards, and recognition
           </p>
         </motion.div>
@@ -60,8 +60,8 @@ export default function AchievementGallery() {
                 onClick={() => setFilter(type)}
                 className={`px-6 py-2 rounded-full font-medium transition-all capitalize ${
                   filter === type
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-gradient-to-r from-dark-accent to-orange-500 text-white shadow-lg'
+                    : 'bg-dark-card border border-dark-borderGlow text-dark-textMuted hover:text-dark-textMain hover:border-dark-accent/50'
                 }`}
               >
                 {type === 'all' ? 'All' : type}
@@ -73,7 +73,7 @@ export default function AchievementGallery() {
         {/* Gallery Grid */}
         {achievementsWithImages.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-dark-textMuted">
               📸 Achievement images coming soon! Check back later.
             </p>
           </div>
@@ -93,9 +93,9 @@ export default function AchievementGallery() {
                 className="group cursor-pointer"
                 onClick={() => setSelectedImage(achievement)}
               >
-                <div className="relative bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
+                <div className="relative bg-dark-card border border-dark-borderGlow rounded-2xl overflow-hidden shadow-lg hover:shadow-xl hover:shadow-dark-accent/10 transition-all">
                   {/* Image Container */}
-                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600">
+                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-dark-accent to-orange-500">
                     {achievement.image ? (
                       <img
                         src={achievement.image}
@@ -144,22 +144,22 @@ export default function AchievementGallery() {
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`px-2 py-1 text-xs rounded-full capitalize ${
                         achievement.type === 'hackathon' 
-                          ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400'
+                          ? 'bg-dark-accent/10 text-dark-accent'
                           : achievement.type === 'certification'
-                          ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                          : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                          ? 'bg-orange-500/10 text-orange-500'
+                          : 'bg-yellow-500/10 text-yellow-500'
                       }`}>
                         {achievement.type}
                       </span>
-                      <div className="flex items-center gap-1 text-sm text-gray-500">
+                      <div className="flex items-center gap-1 text-sm text-dark-textMuted">
                         <FiCalendar size={12} />
                         <span>{achievement.date}</span>
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                    <h3 className="text-lg font-bold mb-2 text-dark-textMain group-hover:text-dark-accent transition">
                       {achievement.title}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-dark-textMuted">
                       {achievement.description}
                     </p>
                   </div>
@@ -184,7 +184,7 @@ export default function AchievementGallery() {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="relative max-w-4xl w-full bg-white dark:bg-gray-900 rounded-2xl overflow-hidden"
+                className="relative max-w-4xl w-full bg-dark-card border border-dark-borderGlow rounded-2xl overflow-hidden shadow-2xl"
               >
                 <button
                   onClick={() => setSelectedImage(null)}
@@ -200,8 +200,8 @@ export default function AchievementGallery() {
                 />
                 
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{selectedImage.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  <h3 className="text-2xl font-bold mb-2 text-dark-textMain">{selectedImage.title}</h3>
+                  <p className="text-dark-textMuted mb-4">
                     {selectedImage.description}
                   </p>
                   <div className="flex gap-4">
@@ -209,7 +209,7 @@ export default function AchievementGallery() {
                       <a
                         href={selectedImage.certificate}
                         download
-                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition"
+                        className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-dark-accent to-orange-500 text-white rounded-lg hover:shadow-lg transition"
                       >
                         <FiDownload />
                         Download Certificate
@@ -220,7 +220,7 @@ export default function AchievementGallery() {
                         href={selectedImage.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:border-blue-500 transition"
+                        className="flex items-center gap-2 px-4 py-2 border border-dark-borderGlow text-dark-textMuted rounded-lg hover:border-dark-accent hover:text-dark-accent transition"
                       >
                         <FiExternalLink />
                         View Details

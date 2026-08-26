@@ -25,7 +25,7 @@ export default function Projects() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-gray-600 dark:text-gray-400">Some of my best work</p>
+          <p className="text-dark-textMuted">Some of my best work</p>
         </motion.div>
 
         {/* Filter Buttons */}
@@ -35,8 +35,8 @@ export default function Projects() {
               key={cat}
               onClick={() => setFilter(cat)}
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${filter === cat
-                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/25 scale-105'
-                  : 'bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 hover:scale-105'
+                  ? 'bg-dark-accent text-white shadow-lg shadow-dark-accent/25 scale-105'
+                  : 'bg-dark-card text-dark-textMuted hover:bg-dark-bg hover:text-dark-textMain hover:scale-105'
                 }`}
             >
               {cat.charAt(0).toUpperCase() + cat.slice(1)}
@@ -62,10 +62,10 @@ export default function Projects() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -8, scale: 1.01 }}
                 // Updated Card Styling: Added flex-col to push buttons to the bottom, nicer borders, and glow on hover
-                className="group flex flex-col bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 border border-gray-100 dark:border-gray-700/50 hover:border-blue-400/50 transition-all duration-300"
+                className="group flex flex-col bg-dark-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-dark-accent/20 border border-dark-borderGlow hover:border-dark-accent/50 transition-all duration-300"
               >
                 {/* Project Image */}
-                <div className="relative h-48 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center overflow-hidden">
+                <div className="relative h-48 bg-dark-bg flex items-center justify-center overflow-hidden">
                   {project.images && project.images.length > 0 ? (
                     <img 
                       src={project.images[0]} 
@@ -74,18 +74,18 @@ export default function Projects() {
                     />
                   ) : (
                     <>
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 group-hover:scale-110 transition-transform duration-700 ease-out" />
-                      <FiCode className="text-gray-300 dark:text-gray-700 text-7xl group-hover:text-blue-500/50 transition-colors duration-300 z-10" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-dark-accent/10 to-orange-500/10 group-hover:scale-110 transition-transform duration-700 ease-out" />
+                      <FiCode className="text-dark-textMuted text-7xl group-hover:text-dark-accent/50 transition-colors duration-300 z-10" />
                     </>
                   )}
                 </div>
 
                 {/* Content Section */}
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-blue-500 transition-colors duration-300">
+                  <h3 className="text-xl font-bold mb-2 text-dark-textMain group-hover:text-dark-accent transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-5 leading-relaxed">
+                  <p className="text-dark-textMuted mb-5 leading-relaxed">
                     {project.description}
                   </p>
 
@@ -94,30 +94,30 @@ export default function Projects() {
                     {project.techStack.slice(0, 4).map(tech => (
                       <span
                         key={tech}
-                        className="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800/30"
+                        className="px-2.5 py-1 text-xs font-medium rounded-full bg-dark-accent/10 text-dark-accent border border-dark-accent/20"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 4 && (
-                      <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
+                      <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-dark-card border border-dark-borderGlow text-dark-textMuted">
                         +{project.techStack.length - 4}
                       </span>
                     )}
                   </div>
 
                   {/* Key Features */}
-                  <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-6">
+                  <ul className="space-y-2 text-sm text-dark-textMuted mb-6">
                     {project.features.slice(0, 3).map(feature => (
                       <li key={feature} className="flex items-start gap-2">
-                        <span className="text-blue-500 mt-0.5">▹</span>
+                        <span className="text-dark-accent mt-0.5">▹</span>
                         {feature}
                       </li>
                     ))}
                   </ul>
 
                   {/* Links Section - Now always visible at the bottom of the card */}
-                  <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50 flex flex-wrap gap-4">
+                  <div className="mt-auto pt-4 border-t border-dark-borderGlow flex flex-wrap gap-4">
                     <Button href={project.githubUrl} variant="outline" small icon={<FiGithub />}>
                       Code
                     </Button>

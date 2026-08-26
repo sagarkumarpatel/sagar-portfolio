@@ -93,8 +93,8 @@ export default function Contact() {
   };
 
   const contactMethods = [
-    { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: 'bg-red-500' },
-    { icon: FiGithub, label: 'GitHub', value: 'github.com/sagarkumarpatel', href: personalInfo.github, color: 'bg-gray-700' },
+    { icon: FiMail, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: 'bg-orange-500' },
+    { icon: FiGithub, label: 'GitHub', value: 'github.com/sagarkumarpatel', href: personalInfo.github, color: 'bg-dark-bg border border-dark-borderGlow' },
     { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/sagar-patel', href: personalInfo.linkedin, color: 'bg-blue-600' },
   ];
 
@@ -105,7 +105,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" ref={ref} className="py-20 px-4 bg-gray-50 dark:bg-gray-800/30">
+    <section id="contact" ref={ref} className="py-20 px-4 bg-dark-bg">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -114,8 +114,8 @@ export default function Contact() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             Have a project in mind? Let's collaborate!
           </p>
         </motion.div>
@@ -128,7 +128,7 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-2xl font-semibold mb-6">Let's Talk</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-dark-textMuted mb-8">
               I'm currently available for internships and full-time opportunities. 
               Feel free to reach out if you'd like to discuss a project or just want to say hi!
             </p>
@@ -144,40 +144,40 @@ export default function Contact() {
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
-                  className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-lg transition-all"
+                  className="flex items-center gap-4 p-4 bg-dark-card border border-dark-borderGlow rounded-xl shadow-md hover:shadow-lg transition-all"
                 >
                   <div className={`p-3 rounded-lg ${method.color}`}>
                     <method.icon className="text-white text-xl" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-sm text-gray-500 dark:text-gray-400">{method.label}</div>
-                    <div className="font-medium text-gray-800 dark:text-gray-200">{method.value}</div>
+                    <div className="text-sm text-dark-textMuted">{method.label}</div>
+                    <div className="font-medium text-dark-textMain">{method.value}</div>
                   </div>
                 </motion.a>
               ))}
             </div>
 
             {/* Location */}
-            <div className="flex items-center gap-4 p-4 bg-white dark:bg-gray-900 rounded-xl shadow-md">
-              <div className="p-3 rounded-lg bg-green-500">
+            <div className="flex items-center gap-4 p-4 bg-dark-card border border-dark-borderGlow rounded-xl shadow-md">
+              <div className="p-3 rounded-lg bg-dark-accent">
                 <FiMapPin className="text-white text-xl" />
               </div>
               <div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">Location</div>
-                <div className="font-medium text-gray-800 dark:text-gray-200">{personalInfo.location}</div>
+                <div className="text-sm text-dark-textMuted">Location</div>
+                <div className="font-medium text-dark-textMain">{personalInfo.location}</div>
               </div>
             </div>
 
             {/* Response Time Note */}
-            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-              <p className="text-sm text-blue-600 dark:text-blue-400 text-center">
+            <div className="mt-6 p-4 bg-dark-accent/10 border border-dark-accent/20 rounded-xl">
+              <p className="text-sm text-dark-accent text-center">
                 ⚡ I typically respond within 24-48 hours
               </p>
             </div>
 
             {/* Social Links */}
             <div className="mt-8">
-              <h4 className="text-sm font-semibold mb-3 text-gray-600 dark:text-gray-400">Connect on Social Media</h4>
+              <h4 className="text-sm font-semibold mb-3 text-dark-textMuted">Connect on Social Media</h4>
               <div className="flex gap-3">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -189,9 +189,9 @@ export default function Contact() {
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                     whileHover={{ y: -3 }}
-                    className="p-3 bg-white dark:bg-gray-900 rounded-full shadow-md hover:shadow-lg transition-all"
+                    className="p-3 bg-dark-card border border-dark-borderGlow rounded-full shadow-md hover:shadow-lg transition-all group"
                   >
-                    <social.icon className="text-gray-700 dark:text-gray-300 text-xl" />
+                    <social.icon className="text-dark-textMain group-hover:text-dark-accent text-xl transition-colors" />
                   </motion.a>
                 ))}
               </div>
@@ -204,48 +204,48 @@ export default function Contact() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <form ref={formRef} onSubmit={sendEmail} className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl">
+            <form ref={formRef} onSubmit={sendEmail} className="bg-dark-card border border-dark-borderGlow rounded-2xl p-6 shadow-xl">
               <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
               
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium mb-2 text-dark-textMuted">
                     Your Name *
                   </label>
                   <div className="relative">
-                    <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <FiUser className="absolute left-3 top-1/2 -translate-y-1/2 text-dark-textMuted" />
                     <input
                       type="text"
                       name="user_name"
                       value={formData.user_name}
                       onChange={handleChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-dark-borderGlow bg-dark-bg text-dark-textMain focus:outline-none focus:ring-2 focus:ring-dark-accent focus:border-dark-accent transition"
                       placeholder="John Doe"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium mb-2 text-dark-textMuted">
                     Email Address *
                   </label>
                   <div className="relative">
-                    <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+                    <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-dark-textMuted" />
                     <input
                       type="email"
                       name="user_email"
                       value={formData.user_email}
                       onChange={handleChange}
                       required
-                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-dark-borderGlow bg-dark-bg text-dark-textMain focus:outline-none focus:ring-2 focus:ring-dark-accent focus:border-dark-accent transition"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium mb-2 text-dark-textMuted">
                     Subject
                   </label>
                   <input
@@ -253,24 +253,24 @@ export default function Contact() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                    className="w-full px-4 py-3 rounded-lg border border-dark-borderGlow bg-dark-bg text-dark-textMain focus:outline-none focus:ring-2 focus:ring-dark-accent focus:border-dark-accent transition"
                     placeholder="Project Inquiry / Job Opportunity"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+                  <label className="block text-sm font-medium mb-2 text-dark-textMuted">
                     Message *
                   </label>
                   <div className="relative">
-                    <FiMessageSquare className="absolute left-3 top-3 text-gray-400" />
+                    <FiMessageSquare className="absolute left-3 top-3 text-dark-textMuted" />
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition resize-none"
+                      className="w-full pl-10 pr-4 py-3 rounded-lg border border-dark-borderGlow bg-dark-bg text-dark-textMain focus:outline-none focus:ring-2 focus:ring-dark-accent focus:border-dark-accent transition resize-none"
                       placeholder="Tell me about your project or opportunity..."
                     />
                   </div>
@@ -281,8 +281,8 @@ export default function Contact() {
                   disabled={formStatus === 'loading'}
                   className={`w-full py-3 rounded-lg font-medium text-white transition-all flex items-center justify-center gap-2 ${
                     formStatus === 'loading'
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-blue-600 to-purple-600 hover:shadow-lg transform hover:scale-[1.02]'
+                      ? 'bg-dark-card border border-dark-borderGlow text-dark-textMuted cursor-not-allowed'
+                      : 'bg-gradient-to-r from-dark-accent to-orange-500 hover:shadow-lg transform hover:scale-[1.02]'
                   }`}
                 >
                   {formStatus === 'loading' ? (
@@ -312,7 +312,7 @@ export default function Contact() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-green-600 dark:text-green-400 text-sm text-center mt-3"
+                    className="text-green-500 text-sm text-center mt-3"
                   >
                     ✓ Thanks for reaching out! I'll get back to you soon.
                   </motion.p>
@@ -322,7 +322,7 @@ export default function Contact() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="text-red-600 dark:text-red-400 text-sm text-center mt-3"
+                    className="text-red-500 text-sm text-center mt-3"
                   >
                     ⚠ {errorMessage}
                   </motion.p>

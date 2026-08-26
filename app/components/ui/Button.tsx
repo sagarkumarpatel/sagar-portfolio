@@ -29,12 +29,12 @@ export default function Button({
   external,
   small,
 }: ButtonProps) {
-  const baseStyles = 'inline-flex items-center justify-center gap-2 font-medium transition-all rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseStyles = 'inline-flex items-center justify-center gap-2 font-medium transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[44px] hover:-translate-y-1';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:scale-105 focus:ring-blue-500',
-    secondary: 'bg-gray-800 text-white hover:bg-gray-900 focus:ring-gray-500 dark:bg-gray-700 dark:hover:bg-gray-600',
-    outline: 'border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-blue-500 hover:text-blue-500 focus:ring-blue-500',
+    primary: 'bg-dark-accent text-white hover:bg-dark-accentHover hover:shadow-[0_4px_14px_0_rgba(255,87,51,0.39)] focus:ring-dark-accent',
+    secondary: 'bg-dark-card border border-dark-borderGlow text-dark-textMain hover:bg-gray-800 focus:ring-gray-500',
+    outline: 'border-2 border-dark-textMuted text-dark-textMuted hover:border-dark-accent hover:text-dark-accent focus:ring-dark-accent',
   };
   
   const sizes = {

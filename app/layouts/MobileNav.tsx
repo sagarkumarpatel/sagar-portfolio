@@ -121,40 +121,40 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white dark:bg-gray-900 shadow-2xl z-50 md:hidden flex flex-col"
+            className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-dark-bg shadow-2xl z-50 md:hidden flex flex-col"
           >
             {/* Header */}
-            <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+            <div className="p-6 border-b border-dark-borderGlow">
               <div className="flex justify-between items-center mb-4">
                 <div>
-                  <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-dark-accent to-orange-500 bg-clip-text text-transparent">
                     Menu
                   </h2>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                  <p className="text-sm text-dark-textMuted mt-1">
                     Navigate through my portfolio
                   </p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                  className="p-2 rounded-lg bg-dark-card text-dark-textMuted hover:text-dark-textMain hover:bg-gray-800 transition"
                 >
                   ✕
                 </button>
               </div>
               
               {/* Profile Quick View */}
-              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center">
+              <div className="flex items-center gap-3 p-3 bg-gradient-to-r from-dark-accent/10 to-orange-500/10 rounded-xl">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-r from-dark-accent to-orange-500 flex items-center justify-center">
                   <span className="text-white font-bold text-lg">SP</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{personalInfo.name}</h3>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">Full Stack Developer</p>
+                  <h3 className="font-semibold text-dark-textMain">{personalInfo.name}</h3>
+                  <p className="text-xs text-dark-textMuted">Full Stack Developer</p>
                 </div>
                 <a
                   href={personalInfo.resumeUrl}
                   download
-                  className="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+                  className="p-2 rounded-lg bg-dark-accent text-white hover:bg-dark-accentHover transition"
                 >
                   <FiDownload size={18} />
                 </a>
@@ -175,9 +175,9 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     <Link
                       href={item.href}
                       onClick={(e) => handleNavClick(e, item.href)}
-                      className="flex items-center gap-4 px-4 py-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group"
+                      className="flex items-center gap-4 px-4 py-3 min-h-[44px] rounded-lg text-dark-textMuted hover:bg-dark-card hover:text-dark-accent transition-colors group"
                     >
-                      <item.icon className="text-xl text-gray-500 group-hover:text-blue-500 transition" />
+                      <item.icon className="text-xl text-dark-textMuted group-hover:text-dark-accent transition" />
                       <span className="font-medium">{item.name}</span>
                     </Link>
                   </motion.div>
@@ -185,11 +185,11 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
               </div>
 
               {/* Divider */}
-              <div className="my-6 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent dark:via-gray-700" />
+              <div className="my-6 h-px bg-gradient-to-r from-transparent via-dark-borderGlow to-transparent" />
 
               {/* Quick Links */}
               <div className="px-4">
-                <h4 className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 px-4">
+                <h4 className="text-xs font-semibold text-dark-textMuted uppercase tracking-wider mb-3 px-4">
                   Quick Links
                 </h4>
                 <motion.div variants={containerVariants} className="space-y-2">
@@ -198,7 +198,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     href={personalInfo.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    className="flex items-center justify-between px-4 py-3 min-h-[44px] rounded-lg bg-dark-card text-dark-textMuted hover:bg-gray-800 hover:text-dark-accent transition"
                   >
                     <div className="flex items-center gap-3">
                       <FiGithub className="text-xl" />
@@ -211,7 +211,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     href={personalInfo.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    className="flex items-center justify-between px-4 py-3 min-h-[44px] rounded-lg bg-dark-card text-dark-textMuted hover:bg-gray-800 hover:text-dark-accent transition"
                   >
                     <div className="flex items-center gap-3">
                       <FiLinkedin className="text-xl" />
@@ -224,7 +224,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
                     href={personalInfo.leetcode}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between px-4 py-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                    className="flex items-center justify-between px-4 py-3 min-h-[44px] rounded-lg bg-dark-card text-dark-textMuted hover:bg-gray-800 hover:text-dark-accent transition"
                   >
                     <div className="flex items-center gap-3">
                       <FiCode className="text-xl" />
@@ -237,8 +237,8 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             </motion.nav>
 
             {/* Footer */}
-            <div className="p-6 border-t border-gray-200 dark:border-gray-800">
-              <p className="text-xs text-center text-gray-500 dark:text-gray-400">
+            <div className="p-6 border-t border-dark-borderGlow">
+              <p className="text-xs text-center text-dark-textMuted">
                 © {new Date().getFullYear()} Sagar Kumar Patel<br />
                 Building the future, one line at a time
               </p>

@@ -69,7 +69,7 @@ export default function Header() {
         // Changed z-50 to z-[999] here to force it above all 3D content
         className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg'
+            ? 'bg-dark-bg/80 backdrop-blur-md shadow-lg border-b border-dark-borderGlow'
             : 'bg-transparent'
         }`}
       >
@@ -84,7 +84,7 @@ export default function Header() {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="relative w-10 h-10"
     >
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark-accent to-orange-500 rounded-xl transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
       <div className="absolute inset-0 flex items-center justify-center">
         <span className="text-white font-bold text-lg font-['Orbitron'] tracking-wider">SP</span>
       </div>
@@ -95,10 +95,10 @@ export default function Header() {
       whileHover={{ scale: 1.05 }}
       className="text-2xl font-bold font-['Orbitron'] tracking-wider"
     >
-      <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-dark-accent to-orange-500 bg-clip-text text-transparent">
         SAGAR
       </span>
-      <span className="text-gray-800 dark:text-white font-light">.dev</span>
+      <span className="text-dark-textMain font-light">.dev</span>
     </motion.div>
   </div>
 </Link>
@@ -113,19 +113,19 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-blue-600 dark:hover:text-blue-400 group"
+                    className="relative px-4 py-2 text-sm font-medium transition-colors hover:text-dark-accent group min-h-[44px] flex items-center justify-center"
                   >
-                    <span className={`${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                    <span className={`${isActive ? 'text-dark-accent' : 'text-dark-textMuted'}`}>
                       {item.name}
                     </span>
                     {isActive && (
                       <motion.div
                         layoutId="activeNav"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-dark-accent to-orange-500"
                         transition={{ duration: 0.3 }}
                       />
                     )}
-                    <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-blue-500/5" />
+                    <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-dark-accent/10" />
                   </Link>
                 );
               })}
@@ -149,7 +149,7 @@ export default function Header() {
 
         {/* Progress Bar */}
         <motion.div
-          className="h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+          className="h-0.5 bg-gradient-to-r from-dark-accent via-orange-500 to-yellow-500"
           style={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.1 }}

@@ -16,10 +16,10 @@ const typeIcons = {
 };
 
 const typeColors = {
-  hackathon: 'from-purple-500 to-pink-500',
-  certification: 'from-blue-500 to-cyan-500',
-  coding: 'from-green-500 to-emerald-500',
-  award: 'from-yellow-500 to-orange-500',
+  hackathon: 'from-dark-accent to-orange-500',
+  certification: 'from-orange-500 to-yellow-500',
+  coding: 'from-yellow-500 to-green-500',
+  award: 'from-dark-accent to-yellow-500',
 };
 
 export default function Achievements() {
@@ -39,8 +39,8 @@ export default function Achievements() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Achievements & Certifications</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             Recognitions, hackathon wins, and certifications
           </p>
         </motion.div>
@@ -61,24 +61,24 @@ export default function Achievements() {
                 onHoverEnd={() => setHoveredId(null)}
                 className="relative group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                <div className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all">
+                <div className="absolute inset-0 bg-gradient-to-r from-dark-accent to-orange-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                <div className="relative bg-dark-card border border-dark-borderGlow rounded-2xl p-6 shadow-lg hover:shadow-xl hover:shadow-dark-accent/10 transition-all">
                   {/* Icon */}
                   <div className={`inline-flex p-3 rounded-xl bg-gradient-to-r ${colors} mb-4`}>
                     <Icon className="text-white text-2xl" />
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-lg font-bold mb-2">{achievement.title}</h3>
+                  <h3 className="text-lg font-bold mb-2 text-dark-textMain">{achievement.title}</h3>
                   
                   {/* Description */}
-                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                  <p className="text-dark-textMuted text-sm mb-3">
                     {achievement.description}
                   </p>
 
                   {/* Date */}
-                  <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500">
-                    <FiCalendar className="text-blue-500" />
+                  <div className="flex items-center gap-2 text-xs text-dark-textMuted">
+                    <FiCalendar className="text-dark-accent" />
                     <span>{achievement.date}</span>
                   </div>
 
@@ -94,7 +94,7 @@ export default function Achievements() {
                         height: hoveredId === achievement.id ? 'auto' : 0,
                         marginTop: hoveredId === achievement.id ? 12 : 0
                       }}
-                      className="flex items-center gap-2 text-sm text-blue-500 hover:text-blue-600"
+                      className="flex items-center gap-2 text-sm text-dark-accent hover:text-orange-500 transition-colors"
                     >
                       <FiExternalLink />
                       View Profile
@@ -111,7 +111,7 @@ export default function Achievements() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white"
+          className="mt-12 bg-gradient-to-r from-dark-accent to-orange-500 rounded-2xl p-8 text-white shadow-lg"
         >
           <h3 className="text-2xl font-bold mb-4 text-center">Coding Journey Stats</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

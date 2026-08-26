@@ -20,6 +20,15 @@ module.exports = {
         ring: "hsl(var(--ring) / <alpha-value>)",
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
+        dark: {
+          bg: "var(--theme-bg)",
+          card: "var(--theme-card)",
+          accent: "var(--theme-accent)",
+          accentHover: "var(--theme-accent-hover)",
+          textMain: "var(--theme-text-main)",
+          textMuted: "var(--theme-text-muted)",
+          borderGlow: "var(--theme-border-glow)",
+        }
       },
       animation: {
         // Your existing animations (kept exactly as they were)

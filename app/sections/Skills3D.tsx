@@ -86,13 +86,13 @@ const SkillNode = ({ skill, radius, speed, color, angle }: any) => {
                 className="absolute inset-0 rounded-full blur-md opacity-50 transition-opacity duration-300 group-hover:opacity-100"
                 style={{ backgroundColor: color }}
               />
-              <div className="relative flex items-center justify-center w-12 h-12 bg-gray-900/80 backdrop-blur-md border border-white/10 rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)]">
-                <Icon className="text-2xl" style={{ color: hovered ? '#fff' : color }} />
+              <div className="relative flex items-center justify-center w-12 h-12 bg-dark-card/80 backdrop-blur-md border border-dark-borderGlow rounded-full shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+                <Icon className="text-2xl" style={{ color: hovered ? '#FF5733' : color }} />
               </div>
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-40 p-3 bg-gray-900/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl transition-all duration-300 origin-top ${hovered ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
-                <h4 className="text-white font-bold text-sm text-center mb-1">{skill.name}</h4>
-                <div className="text-xs text-gray-400 text-center uppercase tracking-wider mb-2">{skill.category}</div>
-                <div className="h-1.5 w-full bg-gray-800 rounded-full overflow-hidden">
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-40 p-3 bg-dark-card/90 backdrop-blur-xl border border-dark-borderGlow rounded-xl shadow-2xl transition-all duration-300 origin-top ${hovered ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                <h4 className="text-dark-textMain font-bold text-sm text-center mb-1">{skill.name}</h4>
+                <div className="text-xs text-dark-textMuted text-center uppercase tracking-wider mb-2">{skill.category}</div>
+                <div className="h-1.5 w-full bg-dark-bg border border-dark-borderGlow rounded-full overflow-hidden">
                   <div 
                     className="h-full rounded-full transition-all duration-1000 ease-out"
                     style={{ width: hovered ? `${skill.level}%` : '0%', backgroundColor: color }}
@@ -138,7 +138,7 @@ const GalaxyScene = () => {
           <meshStandardMaterial color="#00ffff" emissive="#00ffff" emissiveIntensity={2} toneMapped={false} />
           <Html center distanceFactor={15}>
             <div className="pointer-events-none text-center">
-              <h2 className="text-xl md:text-2xl font-black text-white tracking-widest uppercase drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
+              <h2 className="text-xl md:text-2xl font-black text-dark-textMain tracking-widest uppercase drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]">
                 Tech Core
               </h2>
             </div>
@@ -181,19 +181,18 @@ const GalaxyScene = () => {
 
 function Skills3D() {
   return (
-    <div className="relative w-full h-[100vh] min-h-[800px] bg-[#050505] overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505] pointer-events-none z-10" />
+    <div className="relative w-full h-[100vh] min-h-[800px] bg-dark-bg overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-bg/50 to-dark-bg pointer-events-none z-10" />
       <div className="absolute top-20 left-0 w-full text-center z-20 pointer-events-none">
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight drop-shadow-xl">
+        <h2 className="text-4xl md:text-5xl font-extrabold text-dark-textMain mb-4 tracking-tight drop-shadow-xl">
           Technical Skills
         </h2>
-        <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
+        <p className="text-dark-textMuted text-lg md:text-xl max-w-2xl mx-auto drop-shadow-md">
           Explore my ecosystem of languages, frameworks, and tools.
         </p>
       </div>
       <div className="absolute inset-0">
         <Canvas camera={{ position: [0, 8, 25], fov: 60 }} dpr={[1, 2]}>
-          <color attach="background" args={['#050505']} />
           <ambientLight intensity={0.2} />
           <pointLight position={[0, 0, 0]} intensity={2} color="#00ffff" />
           <Stars radius={50} depth={50} count={3000} factor={4} saturation={0} fade speed={1} />
@@ -201,11 +200,11 @@ function Skills3D() {
         </Canvas>
       </div>
       <div className="absolute bottom-10 left-0 w-full text-center z-20 pointer-events-none md:hidden">
-        <p className="text-xs text-gray-500 uppercase tracking-widest animate-pulse">
+        <p className="text-xs text-dark-textMuted uppercase tracking-widest animate-pulse">
           Touch & drag to explore
         </p>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-50 dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-dark-bg to-transparent z-10 pointer-events-none" />
     </div>
   );
 }
@@ -215,15 +214,7 @@ function Skills3D() {
 // ==========================================
 
 const getColorFromGradient = (gradient: string) => {
-  const colorMap: Record<string, string> = {
-    'from-red-500': 'text-red-500', 'from-blue-500': 'text-blue-500',
-    'from-green-500': 'text-green-500', 'from-purple-500': 'text-purple-500',
-    'from-yellow-500': 'text-yellow-500', 'from-indigo-500': 'text-indigo-500',
-  };
-  for (const [key, value] of Object.entries(colorMap)) {
-    if (gradient.includes(key)) return value;
-  }
-  return 'text-blue-500';
+  return 'text-dark-accent';
 };
 
 function AnimatedNumber({ value, isInView, duration = 2.5 }: { value: number, isInView: boolean, duration?: number }) {
@@ -263,14 +254,14 @@ function SkillCard({ skill, color, index }: { skill: any, color: string, index: 
       <div className="absolute inset-0 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
         style={{ background: `linear-gradient(135deg, ${color.split(' ')[1]}, ${color.split(' ')[3]})` }}
       />
-      <div className="relative bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-md hover:shadow-xl transition-all">
-        {Icon && <Icon className="text-3xl mx-auto mb-2 text-gray-700 dark:text-gray-300" />}
-        <div className="font-medium text-sm h-10 flex items-center justify-center">{skill.name}</div>
+      <div className="relative bg-dark-card border border-dark-borderGlow rounded-xl p-4 text-center shadow-md hover:shadow-xl transition-all">
+        {Icon && <Icon className="text-3xl mx-auto mb-2 text-dark-textMain" />}
+        <div className="font-medium text-sm h-10 flex items-center justify-center text-dark-textMain">{skill.name}</div>
         
         <div className="relative mt-3 flex justify-center">
           <svg className="w-14 h-14 transform -rotate-90">
             <circle
-              className="text-gray-200 dark:text-gray-700"
+              className="text-dark-borderGlow"
               strokeWidth="3" stroke="currentColor" fill="transparent"
               r={radius} cx="28" cy="28"
             />
@@ -306,21 +297,21 @@ function SkillCard({ skill, color, index }: { skill: any, color: string, index: 
 
 function Skills2D() {
   const categories = {
-    languages: { title: '💻 Programming Languages', color: 'from-red-500 to-orange-500' },
-    frontend: { title: '🎨 Frontend', color: 'from-blue-500 to-cyan-500' },
-    backend: { title: '⚙️ Backend', color: 'from-green-500 to-emerald-500' },
-    databases: { title: '🗄️ Databases', color: 'from-purple-500 to-pink-500' },
-    tools: { title: '🛠️ Tools', color: 'from-yellow-500 to-amber-500' },
-    core: { title: '📚 Core CS', color: 'from-indigo-500 to-violet-500' },
+    languages: { title: '💻 Programming Languages', color: 'from-dark-accent to-orange-500' },
+    frontend: { title: '🎨 Frontend', color: 'from-orange-500 to-yellow-500' },
+    backend: { title: '⚙️ Backend', color: 'from-yellow-500 to-green-500' },
+    databases: { title: '🗄️ Databases', color: 'from-green-500 to-cyan-500' },
+    tools: { title: '🛠️ Tools', color: 'from-cyan-500 to-blue-500' },
+    core: { title: '📚 Core CS', color: 'from-blue-500 to-purple-500' },
   };
 
   return (
-    <div className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
+    <div className="py-20 px-4 bg-dark-bg">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Detailed Proficiency</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             A comprehensive breakdown of my capabilities
           </p>
         </div>

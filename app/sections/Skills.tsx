@@ -85,7 +85,7 @@ export default function Skills() {
   const circumference = 2 * Math.PI * radius;
 
   return (
-    <section ref={ref} id="skills" className="py-20 px-4 bg-gray-50 dark:bg-gray-800/30">
+    <section ref={ref} id="skills" className="py-20 px-4 bg-dark-bg">
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -94,8 +94,8 @@ export default function Skills() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto rounded-full" />
-          <p className="text-gray-600 dark:text-gray-400 mt-4">
+          <div className="w-20 h-1 bg-gradient-to-r from-dark-accent to-orange-500 mx-auto rounded-full" />
+          <p className="text-dark-textMuted mt-4">
             Technologies I work with
           </p>
         </motion.div>
@@ -132,16 +132,16 @@ export default function Skills() {
                       <div className="absolute inset-0 bg-gradient-to-r rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
                         style={{ background: `linear-gradient(135deg, ${color.split(' ')[1]}, ${color.split(' ')[3]})` }}
                       />
-                      <div className="relative bg-white dark:bg-gray-800 rounded-xl p-4 text-center shadow-md hover:shadow-xl transition-all">
-                        {Icon && <Icon className="text-3xl mx-auto mb-2 text-gray-700 dark:text-gray-300" />}
-                        <div className="font-medium text-sm">{skill.name}</div>
+                      <div className="relative bg-dark-card border border-dark-borderGlow rounded-xl p-4 text-center shadow-md hover:shadow-xl hover:shadow-dark-accent/10 transition-all">
+                        {Icon && <Icon className="text-3xl mx-auto mb-2 text-dark-textMain" />}
+                        <div className="font-medium text-sm text-dark-textMain">{skill.name}</div>
                         
                         {/* Circular Progress Ring */}
                         <div className="relative mt-3 flex justify-center">
                           <svg className="w-14 h-14 transform -rotate-90">
                             {/* Background circle */}
                             <circle
-                              className="text-gray-200 dark:text-gray-700"
+                              className="text-dark-borderGlow"
                               strokeWidth="3"
                               stroke="currentColor"
                               fill="transparent"
