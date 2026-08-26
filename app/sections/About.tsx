@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { FiBriefcase, FiTarget, FiAward } from 'react-icons/fi';
@@ -18,10 +19,116 @@ export default function About() {
   { label: 'Projects Completed', value: codingStats.projectsCompleted, isCounter: true, suffix: '+', icon: FiBriefcase, color: 'from-blue-500 to-cyan-500' },
 ];
 
+  // Tracks whether Vanta loaded successfully.
+  // 'pending' → waiting, 'loaded' → running, 'failed' → fallback active.
+  const [vantaStatus, setVantaStatus] = useState<'pending' | 'loaded' | 'failed'>('pending');
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const vantaRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const initVanta = () => {
+      // Guard: VANTA or THREE might not be on window yet
+      if (!(window as any).VANTA || !(window as any).THREE) {
+        setVantaStatus('failed');
+        return;
+      }
+
+      // Guard: WebGL availability check
+      try {
+        const canvas = document.createElement('canvas');
+        const hasWebGL =
+          !!(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+        if (!hasWebGL) {
+          setVantaStatus('failed');
+          return;
+        }
+      } catch {
+        setVantaStatus('failed');
+        return;
+      }
+
+      // Attempt to start the Vanta animation
+      try {
+        const effect = (window as any).VANTA.CLOUDS({
+          el: vantaRef.current,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          skyColor: 0x68b8d7,
+          cloudColor: 0xadc1de,
+          cloudShadowColor: 0x183550,
+          sunColor: 0xff9919,
+          sunGlareColor: 0xff6633,
+          sunlightColor: 0xff9933,
+          speed: 1.00,
+        });
+        setVantaEffect(effect);
+        setVantaStatus('loaded');
+      } catch (e) {
+        // Vanta threw an error (e.g. WebGL context lost, bad THREE version, etc.)
+        console.warn('[About] Vanta.js failed to initialise. Using fallback background.', e);
+        setVantaStatus('failed');
+      }
+    };
+
+    // Give the CDN scripts up to 4 seconds to attach to window.
+    // If they haven't arrived by then, flip to the fallback.
+    const timeout = setTimeout(() => {
+      if (!(window as any).VANTA) {
+        console.warn('[About] Vanta.js CDN did not load in time. Using fallback background.');
+        setVantaStatus('failed');
+      }
+    }, 4000);
+
+    // If scripts are already present (cached / fast network), run immediately.
+    if ((window as any).VANTA) {
+      clearTimeout(timeout);
+      initVanta();
+    } else {
+      // Poll until VANTA appears or the timeout fires.
+      const pollInterval = setInterval(() => {
+        if ((window as any).VANTA) {
+          clearInterval(pollInterval);
+          clearTimeout(timeout);
+          initVanta();
+        }
+      }, 200);
+
+      // Cleanup the interval on unmount
+      return () => {
+        clearInterval(pollInterval);
+        clearTimeout(timeout);
+        if (vantaEffect) vantaEffect.destroy();
+      };
+    }
+
+    return () => {
+      clearTimeout(timeout);
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // The fallback gradient mirrors the section's clean aesthetic when Vanta can't run.
+  const fallbackStyle =
+    vantaStatus === 'failed'
+      ? { background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 50%, #e8f4fd 100%)' }
+      : {};
+
   return (
-    <section id="about" ref={ref} className="py-20 px-4 bg-dark-bg">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
+    <section
+      id="about"
+      ref={vantaRef as React.RefObject<HTMLElement>}
+      className="py-20 px-4 bg-dark-bg relative overflow-hidden"
+      style={fallbackStyle}
+    >
+      <div className="relative z-10 pointer-events-auto">
+        <div ref={ref} className="max-w-6xl mx-auto">
+          <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -160,6 +267,7 @@ export default function About() {
             </div>
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   );

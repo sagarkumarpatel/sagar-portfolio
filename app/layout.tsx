@@ -4,6 +4,7 @@ import './globals.css';
 import { Providers } from './providers';
 import Header from '@/app/layouts/Header';
 import Footer from '@/app/layouts/Footer';
+import Script from 'next/script';
 
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
@@ -99,6 +100,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${jakarta.variable} font-sans`}>
+      <head>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js" strategy="beforeInteractive" />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${orbitron.variable} ${poppins.variable} font-sans`}>
         <Providers>
           <Header />

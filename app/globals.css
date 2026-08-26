@@ -87,3 +87,55 @@
 .backface-hidden {
   backface-visibility: hidden;
 }
+
+/* About section: always force dark text over the bright Vanta clouds background.
+   The sky-blue/white cloud animation is always bright, so white dark-mode text 
+   would be unreadable. These overrides are scoped strictly to #about only. */
+#about,
+#about h2,
+#about h3,
+#about h4,
+#about p,
+#about label,
+#about span {
+  color: #111827;
+}
+
+.dark #about .text-dark-textMuted,
+#about .text-dark-textMuted {
+  color: #374151 !important;
+}
+
+.dark #about .text-dark-textMain,
+#about .text-dark-textMain {
+  color: #111827 !important;
+}
+
+.dark #about h2,
+.dark #about h3,
+.dark #about h4 {
+  color: #111827 !important;
+}
+
+/* Keep accent color and gradient colors unaffected */
+.dark #about .text-dark-accent {
+  color: #FF5733 !important;
+}
+
+/* In dark mode, the card backgrounds inside #about must be light (white/off-white)
+   because our text is forced dark. Without this, dark bg + dark text = invisible. */
+.dark #about .bg-dark-card {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Stat counter numbers also need to be dark */
+.dark #about .text-2xl {
+  color: #111827 !important;
+}
+
+/* Stat labels */
+.dark #about .text-xs {
+  color: #374151 !important;
+}
+
